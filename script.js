@@ -57,9 +57,11 @@ function generatePassword(lower, upper, number, symbol, length) {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', () => {
+
   var wantLength = prompt("How long would you like you password to be? Please select between 8 and 128 characters.");
-  if (wantLength < 8 || wantLength > 128) {
-    alert("Number must be between 8 and 128.");
+  //validate is number and is between 8 and 128
+  if (isNaN(wantLength) || wantLength < 8 || wantLength > 128) {
+    alert("You must input a number must be between 8 and 128.");
     return;
   }
 
@@ -68,6 +70,7 @@ generateBtn.addEventListener('click', () => {
   var wantNumber = confirm("Would you like any numbers?");
   var wantSymbol = confirm("Would you like any special characters?");
 
+  //if values are null send alert
   if (!wantLower && !wantUpper && !wantNumber && !wantSymbol) {
     alert("You must choose at least one type of character.")
   }
