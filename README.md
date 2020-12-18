@@ -34,5 +34,5 @@ The url for the site is: https://brandyquinlan.github.io/HW03_Password-Generator
 The repo is located here: https://github.com/brandyquinlan/HW03_Password-Generator
 
 ## Screenshots of Pages
-![Screenshot](Password-Generator-Screenshots.jpg) ![Screenshot](Password-Screen Sizes.jpg)
+![Screenshot](Password-Generator-Screenshots.jpg) ![Screenshot](Password-Screen-Sizes.jpg)
 
