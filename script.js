@@ -1,14 +1,16 @@
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
+// DOM elements
+var generateEl = document.querySelector("#generate");
 var resultEl = document.getElementById('password');
 
-// Collect function returns into object
+// Object of generator functions
 var randomFunc = {
   lower: getRandomLower,
   upper: getRandomUpper,
   number: getRandomNumber,
   symbol: getRandomSymbol
 }
+
+// Generator functions
 
 // Get random lower case letter for password
 function getRandomLower() {
@@ -24,7 +26,7 @@ function getRandomNumber() {
 }
 // Get random special character for password
 function getRandomSymbol() {
-  var symbols = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
+  var symbols = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~"
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
 
@@ -34,37 +36,45 @@ function generatePassword(lower, upper, number, symbol, length) {
   var generatedPassword = '';
   var typesCount = lower + upper + number + symbol;
 
-  // filter out unwanted types
-  var typesArr = [{ lower }, { upper }, { number }, { symbol }].filter(item => Object.values(item)[0]);
+  // Create array of types with keys from randomFunc object. Then filter out unwanted types to generate password
+  var typesArr = [{ lower }, { upper }, { number }, { symbol }].filter
+    (
+      item => Object.values(item)[0]
+    );
 
-  // Doesn't have a selected type
+  // Check if no types selected and return empty string
   if (typesCount === 0) {
     return '';
   }
 
-  // create a loop
+  // Loop over length and call generator function for each type
   for (var i = 0; i < length; i += typesCount) {
     typesArr.forEach(type => {
+      // get keys of randomFun object
       var funcName = Object.keys(type)[0];
+
       generatedPassword += randomFunc[funcName]();
     });
   }
 
+  // Add final password to password variable, slice by length of types to return correct length
   var finalPassword = generatedPassword.slice(0, length);
 
   return finalPassword;
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener('click', () => {
+// Event listener to generate button
+generateEl.addEventListener('click', () => {
 
+  // Get user input for desired length of password
   var wantLength = prompt("How long would you like you password to be? Please select between 8 and 128 characters.");
-  //validate is number and is between 8 and 128
+  // Validate that the length is a number and is between 8 and 128
   if (isNaN(wantLength) || wantLength < 8 || wantLength > 128) {
     alert("You must input a number must be between 8 and 128.");
     return;
   }
 
+  // Get user input for types of characters desired for password
   var wantLower = confirm("Would you like any lower case letters?");
   var wantUpper = confirm("Would you like any upper case letters?");
   var wantNumber = confirm("Would you like any numbers?");
@@ -75,5 +85,6 @@ generateBtn.addEventListener('click', () => {
     alert("You must choose at least one type of character.")
   }
 
+  // Function to take user input and pass to result element (password text box)
   resultEl.innerText = generatePassword(wantLower, wantUpper, wantNumber, wantSymbol, wantLength);
 });
