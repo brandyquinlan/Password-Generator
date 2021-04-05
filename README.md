@@ -30,8 +30,8 @@ WHEN the password is generated
 THEN the password is either displayed in an alert or written to the page
 ```
 ## URL and Repo Locations
-The url for the site is: https://brandyquinlan.github.io/HW03_Password-Generator/
-The repo is located here: https://github.com/brandyquinlan/HW03_Password-Generator
+The url for the site is: https://brandyquinlan.github.io/Password-Generator <br>
+The repo is located here: https://github.com/brandyquinlan/Password-Generator
 
 ## Screenshots of Password Generator
 ![Screenshot](Password-Generator-Screenshots.jpg)
